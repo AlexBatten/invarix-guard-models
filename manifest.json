@@ -45,6 +45,7 @@
       "sizeBytes": 738604996,
       "sha256": "d609fea6b89b5e0f356c48d4083de2160f9089a443a2c6f2bc78e32534a22e64",
       "scanner": "OnnxPromptInjectionScanner",
+      "companions": ["spm.model"],
       "upstream": {
         "source": "protectai/deberta-v3-base-prompt-injection-v2",
         "url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
@@ -53,11 +54,20 @@
       "description": "Prompt injection / jailbreak binary classifier (DeBERTa v3, FP32; INT8 corrupts DeBERTa disentangled attention)."
     },
     {
+      "name": "spm",
+      "filename": "spm.model",
+      "sizeBytes": 2464616,
+      "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+      "scanner": "OnnxPromptInjectionScanner",
+      "description": "SentencePiece Unigram model for the DeBERTa v3 prompt injection tokenizer."
+    },
+    {
       "name": "pii_ner",
       "filename": "pii_ner.onnx",
       "sizeBytes": 1110243449,
       "sha256": "2ffd60f1bb7b03dc899eb612cb78834248cbb9b42755c14de2868a72131f6509",
       "scanner": "OnnxPiiScanner",
+      "companions": ["pii.spm.model"],
       "large": true,
       "upstream": {
         "source": "onnx-community/multilang-pii-ner-ONNX",
@@ -65,6 +75,14 @@
         "license": "Apache-2.0"
       },
       "description": "Multilingual PII NER, 20 entity types (XLM-RoBERTa, FP32 only). Marked 'large' so the library gates its auto-download behind an explicit opt-in."
+    },
+    {
+      "name": "pii_spm",
+      "filename": "pii.spm.model",
+      "sizeBytes": 5069051,
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+      "scanner": "OnnxPiiScanner",
+      "description": "SentencePiece BPE model for the XLM-RoBERTa PII NER tokenizer."
     }
   ]
 }

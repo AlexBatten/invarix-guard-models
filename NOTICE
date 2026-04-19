@@ -1,0 +1,55 @@
+Invarix.Guard Models
+Copyright 2026 Alex Batten
+
+This repository redistributes ONNX exports of third-party machine learning
+models. Each model remains under its upstream license; the exports are
+derivative works and preserve the original terms.
+
+================================================================================
+1. toxicity.onnx
+================================================================================
+Upstream:  citizenlab/distilbert-base-multilingual-cased-toxicity
+           https://huggingface.co/citizenlab/distilbert-base-multilingual-cased-toxicity
+License:   Apache License 2.0
+Modifications: PyTorch checkpoint exported to ONNX format via the tooling
+               in the Invarix.Guard source repository. No weights altered.
+
+================================================================================
+2. embedding.onnx  (ships with vocab.txt and anchors.bin)
+================================================================================
+Upstream:  sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+           https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+License:   Apache License 2.0
+Modifications: PyTorch checkpoint exported to ONNX format. The accompanying
+               anchors.bin file is NOT derived from the upstream model — it is
+               a precomputed set of embedding vectors for Invarix.Guard's harm
+               category anchor prototypes, produced by running the model
+               against seed phrases at library build time. anchors.bin is
+               distributed under the MIT License (see LICENSE).
+
+================================================================================
+3. prompt_injection.onnx
+================================================================================
+Upstream:  protectai/deberta-v3-base-prompt-injection-v2
+           https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2
+License:   Apache License 2.0
+Modifications: PyTorch checkpoint exported to ONNX format. No weights altered.
+
+================================================================================
+4. pii_ner.onnx
+================================================================================
+Upstream:  onnx-community/multilang-pii-ner-ONNX
+           https://huggingface.co/onnx-community/multilang-pii-ner-ONNX
+License:   Apache License 2.0
+Modifications: Republished from the upstream ONNX checkpoint without
+               re-export. INT8 quantization was evaluated and rejected because
+               it substantially degrades NER accuracy on XLM-RoBERTa; only
+               FP32 is shipped.
+
+================================================================================
+
+Apache License 2.0 full text:
+https://www.apache.org/licenses/LICENSE-2.0
+
+The full license requires that this NOTICE file be redistributed alongside
+any copy or derivative work of the above models.

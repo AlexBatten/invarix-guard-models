@@ -1,0 +1,15 @@
+# Model binaries never get committed — they're distributed as Release assets.
+*.onnx
+*.bin
+vocab.txt
+
+# Package artifacts
+*.nupkg
+*.snupkg
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vs/
+.idea/
+*.swp

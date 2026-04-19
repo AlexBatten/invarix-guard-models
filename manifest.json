@@ -1,0 +1,70 @@
+{
+  "release": "models-v1",
+  "repo": "AlexBatten/invarix-guard-models",
+  "baseUrl": "https://github.com/AlexBatten/invarix-guard-models/releases/download/models-v1",
+  "notes": "Sizes are in bytes. Checksums are SHA-256. Regenerate with scripts/compute-hashes.sh after exporting.",
+  "models": [
+    {
+      "name": "toxicity",
+      "filename": "toxicity.onnx",
+      "sizeBytes": 541416975,
+      "sha256": "bb6c5f1620d6fdf7a834d26fffe478a4f40eafd79809610695d7579c84e69f05",
+      "scanner": "OnnxToxicityScanner",
+      "upstream": {
+        "source": "citizenlab/distilbert-base-multilingual-cased-toxicity",
+        "url": "https://huggingface.co/citizenlab/distilbert-base-multilingual-cased-toxicity",
+        "license": "Apache-2.0"
+      },
+      "description": "Multilingual toxicity classifier, 104 languages (DistilBERT, FP32 — INT8 quantization drops borderline-toxic scores below usable thresholds)."
+    },
+    {
+      "name": "embedding",
+      "filename": "embedding.onnx",
+      "sizeBytes": 118086323,
+      "sha256": "fac7bbc89eaa311b445b6a0eb568de8ce5d13786bb3baa3ebfd0c9fce9f8ebfa",
+      "scanner": "EmbeddingSafetyScanner",
+      "companions": ["vocab.txt"],
+      "upstream": {
+        "source": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "license": "Apache-2.0"
+      },
+      "description": "Multilingual sentence embeddings for semantic harm-category classification, 50+ languages (MiniLM)."
+    },
+    {
+      "name": "vocab",
+      "filename": "vocab.txt",
+      "sizeBytes": 995526,
+      "sha256": "fe0fda7c425b48c516fc8f160d594c8022a0808447475c1a7c6d6479763f310c",
+      "scanner": "EmbeddingSafetyScanner",
+      "description": "WordPiece vocabulary for the embedding model tokenizer."
+    },
+    {
+      "name": "prompt_injection",
+      "filename": "prompt_injection.onnx",
+      "sizeBytes": 738604996,
+      "sha256": "d609fea6b89b5e0f356c48d4083de2160f9089a443a2c6f2bc78e32534a22e64",
+      "scanner": "OnnxPromptInjectionScanner",
+      "upstream": {
+        "source": "protectai/deberta-v3-base-prompt-injection-v2",
+        "url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+        "license": "Apache-2.0"
+      },
+      "description": "Prompt injection / jailbreak binary classifier (DeBERTa v3, FP32; INT8 corrupts DeBERTa disentangled attention)."
+    },
+    {
+      "name": "pii_ner",
+      "filename": "pii_ner.onnx",
+      "sizeBytes": 1110243449,
+      "sha256": "2ffd60f1bb7b03dc899eb612cb78834248cbb9b42755c14de2868a72131f6509",
+      "scanner": "OnnxPiiScanner",
+      "large": true,
+      "upstream": {
+        "source": "onnx-community/multilang-pii-ner-ONNX",
+        "url": "https://huggingface.co/onnx-community/multilang-pii-ner-ONNX",
+        "license": "Apache-2.0"
+      },
+      "description": "Multilingual PII NER, 20 entity types (XLM-RoBERTa, FP32 only). Marked 'large' so the library gates its auto-download behind an explicit opt-in."
+    }
+  ]
+}

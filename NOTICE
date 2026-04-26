@@ -15,17 +15,21 @@ Modifications: PyTorch checkpoint exported to ONNX format via the tooling
                in the Invarix.Guard source repository. No weights altered.
 
 ================================================================================
-2. embedding.onnx  (ships with vocab.txt and anchors.bin)
+2. embedding.onnx  (ships with embedding.spm.model)
 ================================================================================
-Upstream:  sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-           https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-License:   Apache License 2.0
-Modifications: PyTorch checkpoint exported to ONNX format. The accompanying
-               anchors.bin file is NOT derived from the upstream model — it is
-               a precomputed set of embedding vectors for Invarix.Guard's harm
-               category anchor prototypes, produced by running the model
-               against seed phrases at library build time. anchors.bin is
-               distributed under the MIT License (see LICENSE).
+Upstream:  intfloat/multilingual-e5-base
+           https://huggingface.co/intfloat/multilingual-e5-base
+License:   MIT License
+Modifications: PyTorch checkpoint exported to ONNX format (FP32, 768-dim,
+               XLM-RoBERTa backbone). The companion embedding.spm.model is
+               the upstream SentencePiece tokenizer file, redistributed
+               unmodified under the same MIT terms.
+
+               Invarix.Guard's harm-category anchor prototypes (anchors.bin)
+               are NOT shipped — they are computed on first use by running
+               this model against the seed phrases compiled into the library,
+               then cached locally. The cached anchor vectors are downstream
+               works of this model and remain under the upstream MIT license.
 
 ================================================================================
 3. prompt_injection.onnx

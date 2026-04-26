@@ -1,7 +1,7 @@
 {
-  "release": "models-v1",
+  "release": "models-v2",
   "repo": "AlexBatten/invarix-guard-models",
-  "baseUrl": "https://github.com/AlexBatten/invarix-guard-models/releases/download/models-v1",
+  "baseUrl": "https://github.com/AlexBatten/invarix-guard-models/releases/download/models-v2",
   "notes": "Sizes are in bytes. Checksums are SHA-256. Regenerate with scripts/compute-hashes.sh after exporting.",
   "models": [
     {
@@ -20,16 +20,24 @@
     {
       "name": "embedding",
       "filename": "embedding.onnx",
-      "sizeBytes": 118086323,
-      "sha256": "fac7bbc89eaa311b445b6a0eb568de8ce5d13786bb3baa3ebfd0c9fce9f8ebfa",
+      "sizeBytes": 1110007849,
+      "sha256": "7b9ef5d6454d7dae6e1c0d0a567efdf3df587b9f311020f5070b50d6127a5cc7",
       "scanner": "EmbeddingSafetyScanner",
-      "companions": ["vocab.txt"],
+      "companions": ["embedding.spm.model"],
       "upstream": {
-        "source": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        "url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        "license": "Apache-2.0"
+        "source": "intfloat/multilingual-e5-base",
+        "url": "https://huggingface.co/intfloat/multilingual-e5-base",
+        "license": "MIT"
       },
-      "description": "Multilingual sentence embeddings for semantic harm-category classification, 50+ languages (MiniLM)."
+      "description": "Multilingual sentence embeddings for semantic harm-category classification + Pro custom-blocklist semantic rules, 100+ languages (e5-base / XLM-RoBERTa, 768-dim, FP32)."
+    },
+    {
+      "name": "embedding_spm",
+      "filename": "embedding.spm.model",
+      "sizeBytes": 5069051,
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+      "scanner": "EmbeddingSafetyScanner",
+      "description": "SentencePiece BPE model for the e5-base / XLM-RoBERTa tokenizer."
     },
     {
       "name": "vocab",
@@ -37,7 +45,7 @@
       "sizeBytes": 995526,
       "sha256": "fe0fda7c425b48c516fc8f160d594c8022a0808447475c1a7c6d6479763f310c",
       "scanner": "EmbeddingSafetyScanner",
-      "description": "WordPiece vocabulary for the embedding model tokenizer."
+      "description": "Legacy WordPiece vocabulary kept for backward compatibility; e5-base uses the SentencePiece companion above."
     },
     {
       "name": "prompt_injection",
